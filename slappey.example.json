@@ -1,0 +1,7 @@
+{
+  "name": "BOT_NAME", 
+  "language": "javascript",
+  "manager": "npm",
+  "token": "DISCORD_BOT_TOKEN",
+  "prefix": "PREFIX"
+}
