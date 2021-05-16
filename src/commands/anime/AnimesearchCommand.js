@@ -7,7 +7,7 @@ module.exports = class AnimesearchCommand extends BaseCommand {
     super('animesearch', 'anime', ['anime', 'anisearch']);
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
      //Start
     
      let Text = args[0];
