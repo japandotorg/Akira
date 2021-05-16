@@ -11,15 +11,15 @@ module.exports = class AnimesearchCommand extends BaseCommand {
     //Start
 
     let Text = args[0];
-
+    //If nothing is given
     if (!Text) return message.channel.send(`Please Give Something!`);
-
+    //Limiting text
     if (Text.length > 200) return message.channel.send(`Text Limit - 200`);
-
+    //Searching message
     let Msg = await message.channel.send(`**Searching It For You 🔮**`);
-
+    
     let Replaced = Text.replace(/ +/g, " ");
-
+    //delete the searching message
     await Msg.delete();
 
     let Anime;
@@ -31,7 +31,7 @@ module.exports = class AnimesearchCommand extends BaseCommand {
       Anime = await Scraper.getInfoFromName(Replaced);
 
       if (!Anime.genres[0] || Anime.genres[0] === null) Anime.genres[0] = "None";
-
+      //making the embed
       Embed = new Discord.MessageEmbed()
         .setColor('#2f3136')
         .setURL(Anime.url)
@@ -51,7 +51,7 @@ module.exports = class AnimesearchCommand extends BaseCommand {
     } catch (error) {
       return message.channel.send(`No Anime Found!`);
     };
-
+    //senting the embed
     return message.channel.send(Embed);
     //End
   }
