@@ -1,4 +1,5 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
+const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 
 module.exports = class MemeCommand extends BaseCommand {
