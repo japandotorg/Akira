@@ -16,7 +16,8 @@
     "discord.js": "^12.5.3",
     "mal-scraper": "^2.11.3",
     "moment": "^2.29.1",
-    "nekos.life": "^2.0.7"
+    "nekos.life": "^2.0.7",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
