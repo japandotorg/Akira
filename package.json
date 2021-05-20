@@ -17,7 +17,8 @@
     "mal-scraper": "^2.11.3",
     "moment": "^2.29.1",
     "nekos.life": "^2.0.7",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.1",
+    "random-number": "^0.0.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
