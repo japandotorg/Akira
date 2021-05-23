@@ -6,7 +6,7 @@ module.exports = class ResetwarnCommand extends BaseCommand {
     super('resetwarn', 'moderation', ['clearwarn', 'cwarn']);
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.channel.send(
         "You should have \`MANAGE MESSAGES\` to use this command"

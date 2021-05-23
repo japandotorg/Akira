@@ -6,7 +6,7 @@ module.exports = class WarningsCommand extends BaseCommand {
     super('warnings', 'moderation', []);
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
     const user = message.mentions.members.first() || message.author;
 
     let warnings = db.get(`warnings_${message.guild.id}_${user.id}`);

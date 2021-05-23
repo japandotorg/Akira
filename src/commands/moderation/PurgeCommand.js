@@ -6,7 +6,7 @@ module.exports = class PurgeCommand extends BaseCommand {
     super('purge', 'moderation', []);
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
     // Permission checking
     if (!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send('**You do not have permissions to use this command**');
     if (!message.guild.me.hasPermission("MANAGE_CHANNELS")) return message.channel.send('I do not have \`MANAGE_NESSAGES`\ permission.');

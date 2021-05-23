@@ -27,7 +27,7 @@ module.exports = class AvatarCommand extends BaseCommand {
     super('avatar', 'fun', []);
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
     let mentionedMember = message.mentions.members.first() || message.guild.members.cache.get(args[0]);
     if (!mentionedMember) mentionedMember = message.member;
 
