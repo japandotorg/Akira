@@ -4,7 +4,7 @@ const { stripIndent } = require('common-tags');
 
 module.exports = class MembersCommand extends BaseCommand {
   constructor() {
-    super('members', 'fun', []);
+    super('members', 'utilities', []);
   }
 
   run(client, message, args) {
