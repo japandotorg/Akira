@@ -7,9 +7,10 @@ module.exports = class MuteCommand extends BaseCommand {
   }
 
   async run(client, message, args) {
+    // Permission checking
     if (!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send('**You don\'t have permission to use this command**');
     if (!message.guild.me.hasPermission("MANAGE_MESSAGES")) return message.channel.send('I require \`MANAGE_CHANNELS\` permission to mute.');
-
+    // Arguments for the mute
     let reason = args.slice(1).join(" ");
     const muteRole = message.guild.roles.cache.get('837392525429964800');
     const memberRole = message.guild.roles.cache.get('837411790773813339');
@@ -19,7 +20,7 @@ module.exports = class MuteCommand extends BaseCommand {
       .setDescription(`Reason for being muted: ${reason}`)
       .setColor("#2f3136")
       .setTimestamp()
-
+    // options if command not used properly
     if (!args[0]) return message.channel.send('**Please mention the person you want to mute ||\`[prefix]mute @user reason\`||**');
     if (!mentionedMember) return message.channel.send('**The user you want to mute is not in this server**');
     if (!mentionedMember.user.id == message.author.id) return message.channel.send('**You can\'t mute yourself**');
