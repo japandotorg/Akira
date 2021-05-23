@@ -1,5 +1,6 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
-let answers = [
+const { MessageEmbed } = require('discord.js');
+const answers = [
   'Maybe.',
   'Certainly not.',
   'I hope so.',
@@ -25,18 +26,24 @@ let answers = [
   'There is a small chance',
   'Yes!',
   'Shut up you smol pp.',
-  'Tough talk from a guy with smol pp!',
-  'Cannot answer to a beya dekhat!'
+  'Tough talk from a guy with smol pp!'
 ]
 
 module.exports = class EightballCommand extends BaseCommand {
   constructor() {
-    super('eightball', 'fun', []);
+    super('eightball', 'fun', ['8ball', '8b']);
   }
 
   async run(client, message, args) {
-    const BallNumber = Math.floor(Math.random() * answers.length);
-    const delay = (msec) => new Promise((resolve) => setTimeout(resolve, msec));
-    message = await message.channel.send(answers[BallNumber]);
+    const question = args.join(' ');
+    if (!question) return this.sendErrorMessage(message, 0, 'Please provide a question to ask');
+    const embed = new MessageEmbed()
+      .setTitle('🎱  The Magic 8-Ball  🎱')
+      .addField('Question', question)
+      .addField('Answer', `${answers[Math.floor(Math.random() * answers.length)]}`)
+      .setFooter(message.member.displayName,  message.author.displayAvatarURL({ dynamic: true }))
+      .setTimestamp()
+      .setColor(message.guild.me.displayHexColor);
+    message.channel.send(embed);
   }
-}
+};
