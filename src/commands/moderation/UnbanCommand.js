@@ -8,7 +8,7 @@ module.exports = class UnbanCommand extends BaseCommand {
 
   async run(client, message, args) {
    //Permission Checking:
-   if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**||Noob||You do not have permission to unban someone**");
+   if (!message.member.hasPermission("BAN_MEMBERS")) return message.channel.send("**You do not have permission to unban someone**");
    if (!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send("My role does not have the unban permission.");
 
    //Variables:
