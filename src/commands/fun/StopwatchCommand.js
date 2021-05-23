@@ -1,58 +1,45 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
-const ms = require("ms");
-const Discord = require("discord.js");
-const db = require("quick.db");
+const Discord = require('discord.js');
+const ms = require('ms')
 
 module.exports = class StopwatchCommand extends BaseCommand {
-  constructor() {
-    super('stopwatch', 'fun', []);
-  }
+    constructor() {
+      super('remindme', 'fun', ['rme']);
+    }
 
-  run(client, message, args) {
-    const input = args[0];
-    const input2 = args[1];
-    const reply =
-      1500 ||
-      input2
-      .replace(`s` || `second` || `detik`, 1500)
-      .replace(`m` || `minute` || `menit`, 50000)
-      .replace(`h` || `hour` || `jam`, 3500000)
-      .replace(`d` || `day` || `hari`, 86300000);
-    const Ss = reply;
-    var remainingTime = input,
-      remainingCount = 1,
-      status = ":stopwatch:";
-    var countdown = await message.channel.send(
-      new Discord.MessageEmbed()
-      .addField(
-        "Timer",
-        `Started! **${remainingTime}${input2 || "s"}** ${status}`
-      )
-      .setColor("RANDOM")
-    );
-    let clock = setInterval(() => {
-      remainingTime--;
-      countdown.edit(
-        new Discord.MessageEmbed()
-        .addField(
-          "Start-Time",
-          `**${remainingTime}${input2 || "s"}** remain ${status}`
-        )
-        .setColor("RANDOM")
-      );
-      if (remainingTime == 0) {
-        status = ":stopwatch:";
-        clearInterval(clock);
-        countdown.delete();
-        message.channel.send(
-          new Discord.MessageEmbed()
-          .addField(
-            "Timer Finished",
-            `Done **${input}${input2 || "s"}** ${status}`
-          )
-          .setColor("RANDOM")
-        );
+    async run(client, message, args) {
+      args = args.join(" ").split(" | ");
+    
+      let remindTime = args[0];
+          const remindTimeError = new Discord.MessageEmbed()
+                .setColor('#ed455a')
+                .setTitle('• Error: 01 •')
+                .setDescription('```You did not specify a time for your reminder```')
+      if(!remindTime) return message.channel.send(remindTimeError)
+        
+      let reminderMessage = args[1]
+          const reminderMessageError = new Discord.MessageEmbed()
+                .setColor('#ed455a')
+                .setTitle('• Error: 02 •')
+                .setDescription('```You did not create a message for your reminder```')
+      if(!reminderMessage) return message.channel.send(reminderMessageError)
+          
+      const setReminder = new Discord.MessageEmbed()
+            .setTitle('⏰ Reminder has been set! ⏰')
+            .setColor('#41baea')
+            .addField('**I will remind you in**', `*${ms(ms(remindTime))}*`)
+            .addField('**Your reminder is**', `*${reminderMessage}*`)
+      
+      const reminder = new Discord.MessageEmbed()
+            .setTitle('⏰ Reminder! ⏰')
+            .setColor('#41baea')
+            .setDescription(reminderMessage)
+      
+      message.delete()
+      message.author.send(setReminder)
+    
+      setTimeout(function(){
+        message.author.send(reminder)
+        }, ms(remindTime));
       }
-    }, Ss);
-  }
-};
+    }
