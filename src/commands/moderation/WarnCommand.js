@@ -10,7 +10,7 @@ module.exports = class WarnCommand extends BaseCommand {
   run(client, message, args) {
     if (!message.member.hasPermission("MANAGE_MESSAGES")) {
       return message.channel.send(
-        "You should have admin perms to use this command!"
+        "You should have \`MANAGE MESSAGES\` to use this command"
       );
     }
 
