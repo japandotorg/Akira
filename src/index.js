@@ -23,6 +23,7 @@ const { Client } = require('discord.js');
 const { registerCommands, registerEvents } = require('./utils/registry');
 const config = require('../slappey.json');
 const client = new Client();
+client.snipes = new Map();
 
 (async () => {
   client.commands = new Map();
