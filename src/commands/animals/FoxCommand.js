@@ -4,14 +4,14 @@ const { Client, MessageAttachment, MessageEmbed } = require("discord.js");
 const got = require('got');
 const fs = require("fs");
 
-module.exports = class WholesomeCommand extends BaseCommand {
+module.exports = class FoxCommand extends BaseCommand {
   constructor() {
-    super('wholesome', 'fun', ['wsm']);
+    super('fox', 'animals', []);
   }
 
   async run(client, message, args) {
     const embed = new Discord.MessageEmbed();
-    got('https://www.reddit.com/r/wholesome/random/.json')
+    got('https://www.reddit.com/r/fox/random/.json')
       .then(response => {
         const [list] = JSON.parse(response.body);
         const [post] = list.data.children;
