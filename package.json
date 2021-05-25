@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "common-tags": "^1.8.0",
+    "discord-giveaways": "^4.5.1",
     "discord.js": "^12.5.3",
     "fs": "^0.0.1-security",
     "mal-scraper": "^2.11.3",
