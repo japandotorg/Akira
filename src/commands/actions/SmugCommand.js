@@ -29,7 +29,7 @@ module.exports = class SmugCommand extends BaseCommand {
     super('smug', 'actions', []);
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
     if (!message.guild) return;
     if (message.mentions.members.size === 0) {
       async function no_ping() {
