@@ -1,11 +1,37 @@
 const BaseCommand = require('../../utils/structures/BaseCommand');
+const Discord = require('discord.js');
+const nekoclient = require('nekos.life');
+const neko = new nekoclient();
 
 module.exports = class BakaCommand extends BaseCommand {
   constructor() {
     super('baka', 'actions', []);
   }
 
-  run(client, message, args) {
-    message.channel.send('baka command works');
+  async run(client, message, args) {
+    if (!message.guild) return;
+    if (message.mentions.members.size === 0) {
+      async function no_ping() {
+        const GIF = await neko.sfw.baka();
+        const embed = new Discord.MessageEmbed()
+          .setColor('#f4c2c2')
+          .setTitle(`${message.author.tag} screams **bakkkaaaaa**`)
+          .setImage(GIF.url)
+        message.channel.send(embed);
+      }
+      no_ping();
+    }
+    if (message.mentions.members.size !== 0) {
+      async function ping() {
+        const member = message.mentions.members.first();
+        const GIF = await neko.sfw.baka();
+        const embed = new Discord.MessageEmbed()
+          .setColor('#f4c2c2')
+          .setTitle(`${message.author.tag} thinks that ${member.user.tag} is a baka`)
+          .setImage(GIF.url)
+        message.channel.send(embed);
+      }
+      ping();
+    }
   }
 }
