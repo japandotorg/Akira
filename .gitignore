@@ -1,5 +1,6 @@
 .idea
 .devcontainer/
+.vscode/
 
 # Logs
 logs
