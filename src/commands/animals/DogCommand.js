@@ -20,10 +20,8 @@
  */
 
 const BaseCommand = require('../../utils/structures/BaseCommand');
-const Discord = require("discord.js");
-const { Client, MessageAttachment, MessageEmbed } = require("discord.js");
-const got = require('got');
-const fs = require("fs");
+const randomPuppy = require('random-puppy');
+const Discord = require('discord.js');
 
 module.exports = class DogCommand extends BaseCommand {
   constructor() {
@@ -31,27 +29,17 @@ module.exports = class DogCommand extends BaseCommand {
   }
 
   async run(client, message, args) {
-    const embed = new Discord.MessageEmbed();
-    got('https://www.reddit.com/r/dog/random/.json')
-      .then(response => {
-        const [list] = JSON.parse(response.body);
-        const [post] = list.data.children;
-  
-        const permalink = post.data.permalink;
-        const memeUrl = `https://reddit.com${permalink}`;
-        const memeImage = post.data.url;
-        const memeTitle = post.data.title;
-        const memeUpvotes = post.data.ups;
-        const memeNumComments = post.data.num_comments;
-  
-              embed.setTitle(`${memeTitle}`);
-              embed.setURL(`${memeUrl}`);
-        embed.setColor('RANDOM');
-        embed.setImage(memeImage);
-        embed.setFooter(`👍 ${memeUpvotes} 💬 ${memeNumComments}`);
-  
-        message.channel.send(embed);
-      })
-      .catch(console.error);
-    }
-  };
+    const subReddits = ["dog", "dogs"]
+    const random = subReddits[Math.floor(Math.random() * subReddits.length)]
+
+    const img = await randomPuppy(random);
+
+    const memeEmbed = new Discord.MessageEmbed()
+    .setColor("RANDOM")
+    .setImage(img)
+    .setTitle(`From r/${random}`)
+    .setURL(`https://reddit.com/r/${random}`)
+
+    message.channel.send(memeEmbed);
+}
+}
