@@ -18,4 +18,4 @@ Or you can start the bot manually in your cmd/editor terminal using `npm start` 
 
 ## Note
 The bot is still under development so there are still alot of things to go, and also I'll make a better readme after i'm completely done building the bot <br>
-If you need any help you can dm me @inthedark.org#0666
+If you need any help you can dm me @inthedark.org#0666(759180080328081450)
