@@ -9,7 +9,7 @@ module.exports = class RpsCommand extends BaseCommand {
     super('rps', 'fun', []);
   }
 
-  run(client, message, args) {
+  async run(client, message, args) {
     let userChoice;
     if (args.length) userChoice = args[0].toLowerCase();
     if (!rps.includes(userChoice)) 
