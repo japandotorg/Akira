@@ -14,7 +14,7 @@ module.exports = class GayrateCommand extends BaseCommand {
     if (!user) return message.reply(`🔴 Provide a valid user from this guild !!`)
 
     const embed = new Discord.MessageEmbed()
-    .setTitle(`${emoji.Gay} Gayrate !!`)
+    .setTitle(`🏳‍🌈 Gayrate 🏳‍🌈`)
     .setDescription(`${user} (\`${user.user.tag}\`) is ${gayrate} % gay 🏳‍🌈`)
     .setTimestamp()
 
