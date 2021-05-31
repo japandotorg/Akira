@@ -20,8 +20,8 @@
  */
 
 const BaseCommand = require('../../utils/structures/BaseCommand');
-const randomPuppy = require('random-puppy');
 const Discord = require('discord.js');
+const fetch = require('node-fetch');
 
 
 module.exports = class CatCommand extends BaseCommand {
@@ -30,17 +30,15 @@ module.exports = class CatCommand extends BaseCommand {
   }
 
   async run(client, message, args) {
-    const subReddits = ["cat", "cats"]
-    const random = subReddits[Math.floor(Math.random() * subReddits.length)]
+    const res = await fetch('https://some-random-api.ml/img/cat');
+    const img = (await res.json()).link;
 
-    const img = await randomPuppy(random);
-
-    const memeEmbed = new Discord.MessageEmbed()
-    .setColor("RANDOM")
+    const embed = new Discord.MessageEmbed()
+    .setTitle(`🐈 Meow 🐈`)
     .setImage(img)
-    .setTitle(`From r/${random}`)
-    .setURL(`https://reddit.com/r/${random}`)
-
-    message.channel.send(memeEmbed);
-}
+    .setFooter(`Requested ${message.member.displayName}`,  message.author.displayAvatarURL({ dynamic: true }))
+    .setTimestamp()
+    .setColor(message.guild.me.displayHexColor);
+    message.channel.send(embed);
+  }
 }
